@@ -5,27 +5,27 @@ import './components/TodoComponents/Todo.css'
 const todosData = [
   {
     task: 'Take out the garbage',
-    id: Date.now(),
+    id: Date.now() + Math.random(),
     completed: false,
   },
   {
     task: 'Learn class components',
-    id: Date.now(),
+    id: Date.now() + Math.random(),
     completed: false,
   },
   {
     task: 'Make dinner',
-    id: Date.now(),
+    id: Date.now() + Math.random(),
     completed: false,
   },
   {
     task: 'Pay bills',
-    id: Date.now(),
+    id: Date.now() + Math.random(),
     completed: false,
   },
   {
     task: 'Complete MVP',
-    id: Date.now(),
+    id: Date.now() + Math.random(),
     completed: false,
   },
 ]
@@ -69,12 +69,19 @@ class App extends React.Component {
     })
   }
 
+  clearCompleted = () => {
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.completed)
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList todos={this.state.todos} toggleItem={this.toggleItem} />
         <TodoForm addTodo={this.addTodo} />
+        <button onClick={this.clearCompleted}>Clear Completed</button>
       </div>
     );
   }
