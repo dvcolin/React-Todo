@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoList from './components/TodoComponents/TodoList'
 
 const todosData = [
   {
@@ -38,11 +39,28 @@ class App extends React.Component {
     this.state = {
       todos: todosData,
     }
+
+    toggleItem = id => {
+      this.setState({
+        todos: this.state.todos.map(todo => {
+          if (todo.id === id) {
+            return {
+              ...todo,
+              completed: !todo.completed
+            }
+          } else {
+            return todo
+          }
+        })
+      })
+    }
+
   }
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <TodoList todos={this.state.todos} />
       </div>
     );
   }
